@@ -16,14 +16,7 @@ export class AgentStatus {
     );
     if (response.status === 200) {
       for (var agentPool of response.data.value) {
-        if (
-          !agentPool.isHosted &&
-          agentPool.size > 0 &&
-          (agentPool.name.includes("QA deploy") ||
-            agentPool.name.includes("DESA deploy") ||
-            agentPool.name.includes("PROD deploy") ||
-            agentPool.name.includes("aws agents"))
-        ) {
+        if (!agentPool.isHosted && agentPool.size > 0) {
           returnData.push(agentPool);
         }
       }
