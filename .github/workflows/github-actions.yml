@@ -15,9 +15,21 @@ jobs:
     - run: npm install
     - run: pwd
     - run: ls
-  CD:
-    name: deploy
+  dev:
+    name: deploy dev
+    environment: 'dev'
     needs: CI
+    runs-on: ubuntu-22.04
+    steps:
+    - uses: actions/checkout@v4
+    - uses: actions/setup-node@v4.0.2
+      with:
+        node-version: '20'
+    - run: npm install
+  prod:
+    name: deploy prod
+    environment: 'prod'
+    needs: dev
     runs-on: ubuntu-22.04
     steps:
     - uses: actions/checkout@v4
