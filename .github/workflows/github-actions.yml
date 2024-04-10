@@ -8,19 +8,21 @@ jobs:
     name: build
     runs-on: ubuntu-22.04
     steps:
+    - name: 'Secret scanning'
+      uses: trufflesecurity/trufflehog@v3.73.0
     - uses: actions/checkout@v4
     - uses: actions/setup-node@v4.0.2
       with:
         node-version: '20'
-    - run: npm install
-      name: 'Install dependencies'
-    - run: npm audit
-      name: 'Audit'
+    - name: 'Install dependencies'
+      run: npm install
+    - name: 'Audit'
+      run: npm audit
       continue-on-error: true
-    - run: pwd
-      name: 'Validate Current path'
-    - run: ls
-      name: 'List files'
+    - name: 'Validate Current path'
+      run: pwd
+    - name: 'List files'
+      run: ls
   dev:
     name: deploy dev
     environment: 'dev'
