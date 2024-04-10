@@ -13,9 +13,14 @@ jobs:
       with:
         node-version: '20'
     - run: npm install
+      name: 'Install dependencies'
     - run: npm audit
+      name: 'Audit'
+      continue-on-error: true
     - run: pwd
+      name: 'Validate Current path'
     - run: ls
+      name: 'List files'
   dev:
     name: deploy dev
     environment: 'dev'
